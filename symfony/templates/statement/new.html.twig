@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Statement{% endblock %}
+
+{% block body %}
+    <h1>Create new Statement</h1>
+    <div class="d-flex align-items-center justify-content-center">
+<div class="col-3 d-flex align-items-center justify-content-center">
+    {{ include('statement/_form.html.twig') }}
+</div>
+    </div>
+{% endblock %}

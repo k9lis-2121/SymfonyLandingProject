@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+{% block content %}
+     <a href="{{ path('app_statement_new') }}" class="btn btn-primary position-fixed bottom-0 end-0 mb-3 me-3">Оставить заявку</a>
+
+    {% for post in posts %}
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content|raw }}</p>
+        <hr>
+    {% endfor %}
+{% endblock %}
+{% endblock %}

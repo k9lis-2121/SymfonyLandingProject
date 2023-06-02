@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  # Сервис PHP
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: symfony_webapp
+    restart: always
+    volumes:
+      - ./symfony:/var/www/html                               # монтируем текущую директорию в контейнер
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini   # локальный файл конфигурации php
+    depends_on:
+      - db                                           # зависимость от сервиса db
+    environment:
+      DATABASE_URL: mysql://symfony_user:symfony_password@db:3306/symfony_db # переменная окружения для подключения к базе данных
+    ports:
+      - "80:9000"
+    networks:
+      - app-network
+
+  # Сервис базы данных MySQL
+  db:
+    image: mysql:8.0
+    container_name: symfony_db
+    restart: always
+    command: '--default-authentication-plugin=mysql_native_password'
+    environment:
+      MYSQL_ROOT_PASSWORD: root                      # пароль root пользователя MySQL
+      MYSQL_DATABASE: symfony_db                     # название базы данных
+      MYSQL_USER: symfony_user                       # имя пользователя
+      MYSQL_PASSWORD: symfony_password               # пароль пользователя
+    ports:
+      - "3306:3306"                                  # порт для доступа к MySQL извне контейнера
+    volumes:
+      - db_data:/var/lib/mysql                       # данные базы данных хранятся в volume
+    networks:
+      - app-network
+
+volumes:
+  db_data:                                             # volume для хранения данных MySQL
+    driver: local
+
+networks:                                              # создаем отдельную сеть для приложения
+  app-network:
+    driver: bridge

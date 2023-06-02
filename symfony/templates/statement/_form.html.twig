@@ -1,0 +1,18 @@
+{{ form_start(form) }}
+<div class="card bg-dark text-white">
+    <div class="form-control bg-dark text-white">
+        <div class="col-12">
+            <h5 class="label">{{ form_label(form.full_name) }}</h5>
+            <p class=" bg-dark text-white">{{ form_widget(form.full_name, {'attr': {'class': 'form-control bg-dark text-white'}}) }}</p>
+
+            <h5 class="label">{{ form_label(form.furniture) }}</h5>
+            <p class=" bg-dark text-white">{{ form_widget(form.furniture, {'attr': {'class': 'form-control bg-dark text-white'}}) }}</p>
+
+            <h5 class="label">{{ form_label(form.phone) }}</h5>
+            <p class=" bg-dark text-white">{{ form_widget(form.phone, {'attr': {'class': 'form-control phone bg-dark text-white'}}) }}</p>
+            <button class="btn" style="color: #fff; background-color: #6c757d; border-color: #6c757d;">{{ button_label|default('Save') }}</button> <a href="{{ path('app_post_index') }}" class="btn btn-secondary">back to list</a>
+
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

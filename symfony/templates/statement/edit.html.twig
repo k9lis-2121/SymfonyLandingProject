@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Statement{% endblock %}
+
+{% block body %}
+    <div class="container-fluid bg-dark">
+        <div class="row justify-content-center pt-5 pb-3">
+            <h1 class="text-light">Edit Statement</h1>
+        </div>
+        <div class="row justify-content-center py-4">
+            <div class="col-md-8 text-light">
+
+                {{ include('statement/_form.html.twig', {'button_label': 'Update'}) }}
+
+                <div class="d-flex justify-content-between mt-4">
+                    {{ include('statement/_delete_form.html.twig') }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
